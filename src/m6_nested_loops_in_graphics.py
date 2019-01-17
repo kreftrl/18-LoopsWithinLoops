@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Robert Kreft.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -80,10 +80,37 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    origx=circle.center.x
+    origy=circle.center.y
+    radius=circle.radius
+    color=circle.fill_color
 
+    x=origx
+    y=origy
+    for j in range(c):
+        for k in range(3):
+            newcircle = rg.Circle(rg.Point(x, y), radius)
+            newcircle.fill_color=color
+            newcircle.attach_to(window)
+            window.render(0)
+            x = x + (2 * radius)
+        y=y+2*radius
+        x=origx
+
+    x=origx+2*radius*3
+    y=origy+2*radius*(c-3)
+    for j in range(3):
+        for k in range(r):
+            newcircle = rg.Circle(rg.Point(x, y), radius)
+            newcircle.fill_color=color
+            newcircle.attach_to(window)
+            window.render()
+            x = x + (2 * radius)
+        y = y + 2 * radius
+        x = origx + 2 * radius * 3
 
 def run_test_draw_wall_on_right():
     """ Tests the    draw_wall_on_right    function. """
@@ -121,9 +148,30 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+    toprightcorner=rectangle.get_upper_right_corner()
+    bottomleftcorner=rectangle.get_lower_left_corner()
+    height=rectangle.get_height()
+    width=rectangle.get_width()
+    origtrcx=toprightcorner.x
+    origblcx=bottomleftcorner.x
+    trcx=toprightcorner.x
+    trcy=toprightcorner.y
+    blcx=bottomleftcorner.x
+    blcy=bottomleftcorner.y
+    for j in range(n+1):
+        for k in range(j):
+            newrectangle=rg.Rectangle(rg.Point(trcx,trcy),rg.Point(blcx,blcy))
+            newrectangle.attach_to(window)
+            window.render()
+            trcx=trcx-width
+            blcx=blcx-width
+        trcy=trcy+height
+        blcy=blcy+height
+        trcx=origtrcx
+        blcx=origblcx
 
 
 # ----------------------------------------------------------------------
