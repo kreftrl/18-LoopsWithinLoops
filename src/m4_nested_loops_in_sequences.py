@@ -298,6 +298,6 @@ def print_characters_slanted(sequence_of_strings):
             print(" "*k,sequence_of_strings[j][k])
 
 # ----------------------------------------------------------------------
-# Calls  main  to start the ball rolling.
+# Calls  main  to start the ball rolling
 # ----------------------------------------------------------------------
 main()
